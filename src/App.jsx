@@ -13,17 +13,24 @@ function App() {
     pubblicato: false
   })
   const [articoli, setArticoli] = useState([]);
-
+  //handle title
   function handleTitle(e) {
     setFormData({ ...formData, titolo: e.target.value })
   }
+  //handle content
+  function handleContent(e) {
+    setFormData({ ...formData, contenuto: e.target.value })
 
+  }
+  //handle form submit
   function handleSubmit(e) {
     e.preventDefault()
     console.log(formData.titolo);
     //reset of title after submit
     setFormData({ titolo: '' })
   }
+
+
   return (
     <>
       <header>
@@ -47,12 +54,19 @@ function App() {
                     className="form-control"
                     aria-describedby="Titolo:"
                   />
+
                   {/* image */}
                   <label htmlFor="task" className="form-label">Immagine articolo  </label>
                   <input type="file" className="form-control" id="immagineArticolo" />
                   {/* text area */}
                   <span className="input-group-text">Contenuto articolo:</span>
-                  <textarea className="form-control" aria-label="Contenuto articolo"></textarea>
+                  <textarea
+                    id='contenuto'
+                    value={formData.contenuto}
+                    onChange={handleContent}
+                    className="form-control"
+                    aria-label="Contenuto articolo"
+                  />
                   {/* select */}
                   <label className="input-group-text" for="inputGroupSelect01">Options</label>
                   <select className="form-select" id="inputGroupSelect01">
