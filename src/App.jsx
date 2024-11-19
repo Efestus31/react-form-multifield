@@ -1,33 +1,59 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [formData, setFormData] = useState({
+    titolo: '',
+    immagine: '',
+    contenuto: '',
+    categoria: '',
+    tags: [],
+    pubblicato: false
+  })
+  const [articoli, setArticoli] = useState([]);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        <div className="container">
+          <h1>React multiform</h1>
+        </div>
+      </header>
+      <main>
+        <div className="container">
+          <div className="row">
+            <form class="d-flex">
+              <div class="col">
+                <div class="input-group mb-3">
+                  {/* Title */}
+                  <span class="input-group-text" id="basic-addon1">Titolo:</span>
+                  <label htmlFor="task" class="form-label">Titolo articolo </label>
+                  <input type="text" class="form-control" id="titolo" aria-describedby="Titolo:" />
+                  {/* image */}
+                  <label htmlFor="task" class="form-label">Immagine articolo  </label>
+                  <input type="file" class="form-control" id="immagineArticolo" />
+                  {/* text area */}
+                  <span class="input-group-text">Contenuto articolo:</span>
+                  <textarea class="form-control" aria-label="Contenuto articolo"></textarea>
+                  {/* select */}
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                  <select class="form-select" id="inputGroupSelect01">
+                    <option selected>Scegli la categoria:</option>
+                    <option value="1">Tecnologia</option>
+                    <option value="2">Lifestyle</option>
+                    <option value="3">Educazione</option>
+                    <option value="4">Cucina e Ricette</option>
+                    <option value="5">Business e Finanza</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </main>
     </>
   )
 }
