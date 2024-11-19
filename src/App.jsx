@@ -61,17 +61,17 @@ function App() {
 
   return (
     <>
-      <header>
-        <div className="container">
+      <header className="bg-primary text-white py-4">
+        <div className="container text-center">
           <h1>React multiform</h1>
         </div>
       </header>
       <main>
-        <div className="container">
+        <div className="container mt-4">
 
-          <form className="d-flex" onSubmit={handleSubmit} >
+          <form className="row g-3" onSubmit={handleSubmit} >
 
-            <div className="input-group mb-3">
+            <div className="col-12">
               {/* Title */}
               <label htmlFor="task" className="form-label">Titolo articolo </label>
               <input
@@ -80,10 +80,11 @@ function App() {
                 value={formData.titolo}
                 onChange={handleTitle}
                 className="form-control"
-                aria-describedby="Titolo:"
+                placeholder="Inserisci il titolo dell'articolo"
               />
             </div>
-            <div className="input-group mb-3">
+
+            <div className="col-12">
               {/* image */}
 
               <label htmlFor="task" className="form-label">Immagine articolo  </label>
@@ -92,10 +93,12 @@ function App() {
                 className="form-control"
                 id="immagineArticolo"
                 onChange={handleImage}
+                accept="image/*"
               />
             </div>
+
             {/* text area */}
-            <div className="input-group mb-3">
+            <div className="col-12">
 
               <label htmlFor="contenuto" className='form-label'>Contenuto articolo:</label>
               <textarea
@@ -103,13 +106,14 @@ function App() {
                 value={formData.contenuto}
                 onChange={handleContent}
                 className="form-control"
-                aria-label="Contenuto articolo"
+                placeholder="Scrivi il contenuto dell'articolo"
+                rows="5"
               />
             </div>
 
-            <div className="input-group mb-3">
+            <div className="col-12">
               {/* select */}
-              <label className="input-group-text" for="inputGroupSelect01">Options</label>
+              <label className="input-group-text" htmlFor="inputGroupCategory">Categorie</label>
               <select
                 id='categoria'
                 value={formData.categoria}
@@ -123,78 +127,95 @@ function App() {
                 <option value="4">Cucina e Ricette</option>
                 <option value="5">Business e Finanza</option>
               </select>
-              <div className="input-group mb-3">
-                {/* checkbox */}
-                <label htmlFor="tags">Tags:</label>
-                <label>
-                  <input
-                    className="form-check-input mt-0"
-                    type="checkbox"
-                    value="Innovazione"
-                    checked={formData.tags.includes('Innovazione')}
-                    onChange={handleTags}
-                    aria-label="Innovazione"
-                  /> Innovazione
-                </label>
-                <label>
-                  <input
-                    className="form-check-input mt-0"
-                    type="checkbox"
-                    value="Benessere"
-                    checked={formData.tags.includes('Benessere')}
-                    onChange={handleTags}
-                    aria-label="Benessere"
-                  /> Benessere
-                </label>
-                <label>
-                  <input
-                    className="form-check-input mt-0"
-                    type="checkbox"
-                    value="Educazione"
-                    checked={formData.tags.includes('Educazione')}
-                    onChange={handleTags}
-                    aria-label="Educazione"
-                  /> Educazione
-                </label>
-                <label>
-                  <input
-                    className="form-check-input mt-0"
-                    type="checkbox"
-                    value="RicetteFacili"
-                    checked={formData.tags.includes('RicetteFacili')}
-                    onChange={handleTags}
-                    aria-label="RicetteFacili"
-                  /> RicetteFacili
-                </label>
-                <label>
-                  <input
-                    className="form-check-input mt-0"
-                    type="checkbox"
-                    value="Startup"
-                    checked={formData.tags.includes('Startup')}
-                    onChange={handleTags}
-                    aria-label="Startup"
-                  /> Startup
-                </label>
-              </div>
-              <div className="input-group mb-3">
-                {/* publish */}
+            </div>
+            <div className="col-12">
+              {/* checkbox */}
+              <label htmlFor="tags">Tags:</label>
+              <label>
                 <input
-                  type="checkbox"
-                  checked={formData.pubblicato}
-                  onChange={handlePublish}
                   className="form-check-input mt-0"
-                  id="pubblicato" />
-              </div>
-              {/* Submit */}
-              <button type="submit">Aggiungi Articolo</button>
+                  type="checkbox"
+                  value="Innovazione"
+                  checked={formData.tags.includes('Innovazione')}
+                  onChange={handleTags}
+                  aria-label="Innovazione"
+                /> Innovazione
+              </label>
+              <label>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  value="Benessere"
+                  checked={formData.tags.includes('Benessere')}
+                  onChange={handleTags}
+                  aria-label="Benessere"
+                /> Benessere
+              </label>
+              <label>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  value="Educazione"
+                  checked={formData.tags.includes('Educazione')}
+                  onChange={handleTags}
+                  aria-label="Educazione"
+                /> Educazione
+              </label>
+              <label>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  value="RicetteFacili"
+                  checked={formData.tags.includes('RicetteFacili')}
+                  onChange={handleTags}
+                  aria-label="RicetteFacili"
+                /> RicetteFacili
+              </label>
+              <label>
+                <input
+                  className="form-check-input mt-0"
+                  type="checkbox"
+                  value="Startup"
+                  checked={formData.tags.includes('Startup')}
+                  onChange={handleTags}
+                  aria-label="Startup"
+                /> Startup
+              </label>
             </div>
 
+            <div className="input-group mb-3">
+              {/* publish */}
+              <input
+                type="checkbox"
+                checked={formData.pubblicato}
+                onChange={handlePublish}
+                className="form-check-input mt-0"
+                id="pubblicato" />
+              Pubblicato
+            </div>
+
+            {/* Submit */}
+            <button type="submit">Aggiungi Articolo</button>
           </form>
 
+          <div className="mt-5">
+            <h2>Articoli Inseriti:</h2>
+            <ul className="list-group">
+              {articoli.map((articolo, index) => (
+                <li key={index} className="list-group-item">
+                  <h3>{articolo.titolo}</h3>
+                  <img src={articolo.immagine} alt="" />
+                  <p>{articolo.contenuto}</p>
+                  <p><strong>Categoria:</strong> {articolo.categoria}</p>
+                  <p><strong>Tags:</strong> {articolo.tags.join(', ')}</p>
+                  <p><strong>Pubblicato:</strong> {articolo.pubblicato ? 'Sì' : 'No'}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        </div>
-      </main>
+        </div >
+      </main >
     </>
   )
 }
