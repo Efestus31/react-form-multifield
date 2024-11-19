@@ -27,12 +27,23 @@ function App() {
     setFormData({ ...formData, categoria: e.target.value })
   }
 
+  //handle tags
+  function handleTags(e) {
+    const { value, checked } = e.target
+    setFormData((prevData) => {
+      const newTags = checked
+        ? [...prevData.tags, value]
+        : prevData.tags.filter((tag) => tag !== value)
+      return { ...prevData, tags: newTags }
+    })
+  }
+
   //handle form submit
   function handleSubmit(e) {
     e.preventDefault()
     console.log(formData);
     //reset of title after submit
-    setFormData({ titolo: '', contenuto: '', categoria: '' })
+    setFormData({ titolo: '', contenuto: '', categoria: '', tags: [] })
   }
 
 
@@ -87,12 +98,59 @@ function App() {
                     <option value="3">Educazione</option>
                     <option value="4">Cucina e Ricette</option>
                     <option value="5">Business e Finanza</option>
+
                     {/* checkbox */}
-                    <input className="form-check-input mt-0" type="checkbox" value="Innovazione" aria-label="Innovazione" />
-                    <input className="form-check-input mt-0" type="checkbox" value="Benessere" aria-label="Benessere" />
-                    <input className="form-check-input mt-0" type="checkbox" value="Educazione" aria-label="Educazione" />
-                    <input className="form-check-input mt-0" type="checkbox" value="RicetteFacili" aria-label="RicetteFacili" />
-                    <input className="form-check-input mt-0" type="checkbox" value="Startup" aria-label="Startup" />
+                    <label htmlFor="tags">Tags:</label>
+                    <label>
+                      <input
+                        className="form-check-input mt-0"
+                        type="checkbox"
+                        value="Innovazione"
+                        checked={formData.tags.includes('Innovazione')}
+                        onChange={handleTags}
+                        aria-label="Innovazione"
+                      /> Innovazione
+                    </label>
+                    <label>
+                      <input
+                        className="form-check-input mt-0"
+                        type="checkbox"
+                        value="Innovazione"
+                        checked={formData.tags.includes('Benessere')}
+                        onChange={handleTags}
+                        aria-label="Benessere"
+                      /> Benessere
+                    </label>
+                    <label>
+                      <input
+                        className="form-check-input mt-0"
+                        type="checkbox"
+                        value="Innovazione"
+                        checked={formData.tags.includes('Educazione')}
+                        onChange={handleTags}
+                        aria-label="Educazione"
+                      /> Educazione
+                    </label>
+                    <label>
+                      <input
+                        className="form-check-input mt-0"
+                        type="checkbox"
+                        value="Innovazione"
+                        checked={formData.tags.includes('RicetteFacili')}
+                        onChange={handleTags}
+                        aria-label="RicetteFacili"
+                      /> RicetteFacili
+                    </label>
+                    <label>
+                      <input
+                        className="form-check-input mt-0"
+                        type="checkbox"
+                        value="Innovazione"
+                        checked={formData.tags.includes('Startup')}
+                        onChange={handleTags}
+                        aria-label="Startup"
+                      /> Startup
+                    </label>
                     {/* publish */}
                     <input type="checkbox" className="form-check-input mt-0" id="pubblicato" />
                   </select>
