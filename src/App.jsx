@@ -13,21 +13,26 @@ function App() {
     pubblicato: false
   })
   const [articoli, setArticoli] = useState([]);
-  //handle title
+  //handle title imput
   function handleTitle(e) {
     setFormData({ ...formData, titolo: e.target.value })
   }
-  //handle content
+  //handle content imput
   function handleContent(e) {
     setFormData({ ...formData, contenuto: e.target.value })
 
   }
+  //handle form imput
+  function handleCategory(e) {
+    setFormData({ ...formData, categoria: e.target.value })
+  }
+
   //handle form submit
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(formData.titolo);
+    console.log(formData);
     //reset of title after submit
-    setFormData({ titolo: '' })
+    setFormData({ titolo: '', contenuto: '', categoria: '' })
   }
 
 
@@ -59,7 +64,7 @@ function App() {
                   <label htmlFor="task" className="form-label">Immagine articolo  </label>
                   <input type="file" className="form-control" id="immagineArticolo" />
                   {/* text area */}
-                  <span className="input-group-text">Contenuto articolo:</span>
+                  <label htmlFor="contenuto" className='form-label'>Contenuto articolo:</label>
                   <textarea
                     id='contenuto'
                     value={formData.contenuto}
@@ -67,9 +72,15 @@ function App() {
                     className="form-control"
                     aria-label="Contenuto articolo"
                   />
+
                   {/* select */}
                   <label className="input-group-text" for="inputGroupSelect01">Options</label>
-                  <select className="form-select" id="inputGroupSelect01">
+                  <select
+                    id='categoria'
+                    value={formData.categoria}
+                    onChange={handleCategory}
+                    className="form-select"
+                  >
                     <option selected>Scegli la categoria:</option>
                     <option value="1">Tecnologia</option>
                     <option value="2">Lifestyle</option>
