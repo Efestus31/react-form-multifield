@@ -204,7 +204,7 @@ function App() {
               {articoli.map((articolo, index) => (
                 <li key={index} className="list-group-item">
                   <h3>{articolo.titolo}</h3>
-                  <img src={articolo.immagine} alt="" />
+                  {articolo.immagine && <img src={URL.createObjectURL(articolo.immagine)} alt="Articolo" width="150" />}
                   <p>{articolo.contenuto}</p>
                   <p><strong>Categoria:</strong> {articolo.categoria}</p>
                   <p><strong>Tags:</strong> {articolo.tags.join(', ')}</p>
